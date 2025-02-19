@@ -69,4 +69,21 @@ function mostrarAmigos(lista) // --Creo una función para mostrar la lista de am
     return;
 }
 
+// EVENTO BOTON SORTEAR:
+
+function sortearAmigo() // --Creo una función para sortear la lista de amigos:
+{
+    if (listaAmigos.length === 0) //primero verifico que el array no este vacio. 
+    {
+        alert("¡Debes agregar amigos a la lista antes de sortear!");
+        return;
+    }
     
+    // Genero un índice aleatorio:
+    const indiceAleatorio = Math.floor(Math.random()*listaAmigos.length);
+    // Obtengo el nombre sorteado:
+    const amigoSorteado = listaAmigos[indiceAleatorio]; //El nombre del amigo que se encuentra en la posición indiceAleatorio del array listaAmigos, se lo asigna a la variable amigoSorteado.
+    //Muestro el resultado del sorteo en el navegador:
+    const elemento = document.getElementById("resultado");
+    elemento.innerHTML = `¡El amigo secreto sorteado es: <strong>${amigoSorteado}</strong>!`;
+}
