@@ -31,20 +31,28 @@ function agregarAmigos() // --Creo una función para agregar amigos al array:
             alert("Por favor debe ingresar un nombre! ");
             limpiarCaja();
         }
-        else if ((!/^[a-zA-Z]+$/.test(amigoUsuario)))
+        else if ((!/^[\p{L}]+$/u.test(amigoUsuario)))
         {
             alert("El nombre ingresado debe contener solo letras.");
             limpiarCaja();
         }
-        else //agrego nombre a la lista: 
+        else 
         {
-            listaAmigos.push(amigoUsuario);
-            mostrarAmigos(listaAmigos); //llamo a lafunciono para mostar el nombre en pantalla.
-            limpiarCaja(); //Llamo a la función limpiarCaja, para que luego de agregar el nombre se limpie.
+            if (listaAmigos.includes(amigoUsuario))
+            {
+                alert(`El nombre ingresado: ${amigoUsuario}, ya existe en la lista.`);
+                limpiarCaja();
+            }
+            else 
+            {
+                listaAmigos.push(amigoUsuario); //agrego nombre a la lista: 
+                mostrarAmigos(listaAmigos); //llamo a la funcion para mostar el nombre en pantalla.
+                limpiarCaja(); //Llamo a la función limpiarCaja, para que luego de agregar el nombre se limpie.
+            }
         }
     console.log(amigoUsuario);
     console.log(listaAmigos);
-        return;
+        return;                                                                                                                                                                                  
 }
 
 function limpiarCaja() // --Creo ahora una función para limpiar la caja de texto:
@@ -63,7 +71,7 @@ function mostrarAmigos(lista) // --Creo una función para mostrar la lista de am
     {
         const amigo = lista[i]; //En cada iteración obtengo el elemento actual del array listaAmigos utilizando el índice i y lo guardo en la variable amigo.
         const nuevoLi = document.createElement("li"); //Creo un nuevo elemento de lista (<li>) para mostrar el nombre del amigo.
-        nuevoLi.textContent = amigo; //Se establece el texto del elemento <li> con el nombre del amigo.
+        nuevoLi.textContent = amigo; //Establezco el texto del elemento <li> con el nombre del amigo.
         listaAmigosUl.appendChild(nuevoLi); //Agrego el elemento <li> como hijo de la lista <ul> en el HTML.
     }
     return;
@@ -86,4 +94,7 @@ function sortearAmigo() // --Creo una función para sortear la lista de amigos:
     //Muestro el resultado del sorteo en el navegador:
     const elemento = document.getElementById("resultado");
     elemento.innerHTML = `¡El amigo secreto sorteado es: <strong>${amigoSorteado}</strong>!`;
+
+    listaAmigos = []; //limpio la lista amigos.
+    mostrarAmigos(listaAmigos);//actualizo la funcion mostrar amigos, le paso el array lista amigos vacio, para limpiar lo que se ve en pantalla.
 }
