@@ -1,13 +1,17 @@
-// El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
+/* OBEJETIVO:
+     El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. 
+     Aquí deberás desarrollar la lógica para resolver el problema*/
 
 
-
-/*                 INICIO
+/*ALGORITMO A SEGUIR: 
+                   INICIO
+                     \/
+         DECLARACION DE VARIABLES.
                      \/
  TOMO EL VALOR AGREGADO EN CAMPO DE TEXTO (IMPUT).
                      \/        
- DESARROLLO DE EVENTO EN BOTON AÑADIR. ->  CONDICION DE VALIDACION DATO ENTRADA, v-> MENSAJE ALERT ; 
-                                                                                 F->SE AGREGA NOMBRE A LA LISTA AMIGOS Y MUESTRO EN PANTALLA.
+ DESARROLLO EVENTO EN BOTON AÑADIR. ->  CONDICION DE VALIDACION DATO ENTRADA, v-> MENSAJE ALERT ; 
+                                                                              F->SE AGREGA NOMBRE A LA LISTA AMIGOS Y MUESTRO EN PANTALLA.
                                                                                                             \/
                                                                                                 EVENTO BOTON CLICK SORTEAR
                                                                                                             \/ 
@@ -23,7 +27,7 @@
     
 function agregarAmigos() // --Creo una función para agregar amigos al array:
 {
-    let amigoUsuario = document.getElementById("amigo").value; //primero vinculo el campo HTML con js.
+    let amigoUsuario = document.getElementById("amigo").value; //Obtengo el texto que el usuario ha ingresado y se lo asigno a la variable amigoUsuario.
     
     //ahora valido la entrada para que solo tome letras y impida el campo vacio:
     if (amigoUsuario === "")
@@ -38,31 +42,29 @@ function agregarAmigos() // --Creo una función para agregar amigos al array:
         }
         else 
         {
-            if (listaAmigos.includes(amigoUsuario))
+            if (listaAmigos.includes(amigoUsuario))//valido el ingreso de nombres repetidos, que pueden llegar a confudir al usuario post sorteo.
             {
                 alert(`El nombre ingresado: ${amigoUsuario}, ya existe en la lista.`);
                 limpiarCaja();
             }
-            else 
+            else//pasada la etapa de validación, se agregan los amigos a la lista  
             {
                 listaAmigos.push(amigoUsuario); //agrego nombre a la lista: 
                 mostrarAmigos(listaAmigos); //llamo a la funcion para mostar el nombre en pantalla.
                 limpiarCaja(); //Llamo a la función limpiarCaja, para que luego de agregar el nombre se limpie.
             }
         }
-    console.log(amigoUsuario);
-    console.log(listaAmigos);
         return;                                                                                                                                                                                  
 }
 
 function limpiarCaja() // --Creo ahora una función para limpiar la caja de texto:
 {
-    document.querySelector("#amigo").value = "";//let valorCaja = document.querySelector("#amigo"); y valorCaja.value = '';
+    document.querySelector("#amigo").value = "";
 }   
 
 // MUESTRO EN PANTALLA NAVEGADOR LA LISTA DE AMIGOS DEL USUARIO:
 
-function mostrarAmigos(lista) // --Creo una función para mostrar la lista de amigos en pantalla navegador:
+function mostrarAmigos(lista) // --Creo una función, con parametro "lista", para mostrar la lista de amigos en pantalla navegador:
 {
     const listaAmigosUl = document.getElementById("listaAmigos"); //Obtengo elemento de la lista <ul> del HTML utilizando su ID "listaAmigos" y lo guardo en la variable listaAmigosUl.
     listaAmigosUl.innerHTML = ""; //limpio el contenido HTML de la lista para evitar que se dupliquen los nombres de amigos cada vez que se llama a la función.
